@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' href='map.css' />
+
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font:
+            12px/20px 'Helvetica Neue',
+            Arial,
+            Helvetica,
+            sans-serif;
+    }
+</style>
+
+<div id='map' style='width: 500px; height: 500px;'></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWlzc29nbyIsImEiOiJjbHd3Y3Q3dmwxMWw2MmpvbG01cjRrcW0zIn0.fqNaN_WrIyvLdbSuR6yJfw';
+const map = new mapboxgl.Map({
+    container: 'map',
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [103.7903703, 1.3119347],
+    zoom: 11.5
+});
+
+
+
+map.addControl(new mapboxgl.NavigationControl());
+
+map.on('load', () => {
+
+
+    map.addSource('places', {
+            // This GeoJSON contains features that include an "icon"
+            // property. The value of the "icon" property corresponds
+            // to an image in the Mapbox Streets style's sprite.
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Pick-Up Point</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">Make it Mount Pleasant</a> is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>',
+                            'icon': 'theatre'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [103.767879, 1.357851]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Mad Men Season Five Finale Watch Party</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a <a href="http://madmens5finale.eventbrite.com/" target="_blank" title="Opens in a new window">Mad Men Season Five Finale Watch Party</a>, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. $10 general admission, $20 admission and two hour open bar.</p>',
+                            'icon': 'theatre'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [103.769579, 1.355038]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Rifle Range Nature Park</strong><p>Over here, you will cycling under a bridge which connects with Rifle Range Nature Park, which has a beautiful trail which leads to a nice scenic view at the top overlooking the entire Bukit Timah area. <a href="http://tallulaeatbar.ticketleap.com/2012beachblanket/" target="_blank" title="Opens in a new window">Big Backyard Beach Bash and Wine Fest</a> on Saturday, serving up conch fritters, fish tacos and crab sliders, and Red Apron hot dogs. 12:00-3:00 p.m. $25.grill hot dogs.</p>',
+                            'icon': 'bar'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [103.77743, 1.34314]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Ballston Arts & Crafts Market</strong><p>The <a href="http://ballstonarts-craftsmarket.blogspot.com/" target="_blank" title="Opens in a new window">Ballston Arts & Crafts Market</a> sets up shop next to the Ballston metro this Saturday for the first of five dates this summer. Nearly 35 artists and crafters will be on hand selling their wares. 10:00-4:00 p.m.</p>',
+                            'icon': 'art-gallery'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-77.111561, 38.882342]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Seersucker Bike Ride and Social</strong><p>Feeling dandy? Get fancy, grab your bike, and take part in this year\'s <a href="http://dandiesandquaintrelles.com/2012/04/the-seersucker-social-is-set-for-june-9th-save-the-date-and-start-planning-your-look/" target="_blank" title="Opens in a new window">Seersucker Social</a> bike ride from Dandies and Quaintrelles. After the ride enjoy a lawn party at Hillwood with jazz, cocktails, paper hat-making, and more. 11:00-7:00 p.m.</p>',
+                            'icon': 'bicycle'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-77.052477, 38.943951]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Capital Pride Parade</strong><p>The annual <a href="http://www.capitalpride.org/parade" target="_blank" title="Opens in a new window">Capital Pride Parade</a> makes its way through Dupont this Saturday. 4:30 p.m. Free.</p>',
+                            'icon': 'rocket'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-77.043444, 38.909664]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Muhsinah</strong><p>Jazz-influenced hip hop artist <a href="http://www.muhsinah.com" target="_blank" title="Opens in a new window">Muhsinah</a> plays the <a href="http://www.blackcatdc.com">Black Cat</a> (1811 14th Street NW) tonight with <a href="http://www.exitclov.com" target="_blank" title="Opens in a new window">Exit Clov</a> and <a href="http://godsilla.bandcamp.com" target="_blank" title="Opens in a new window">Gods’illa</a>. 9:00 p.m. $12.</p>',
+                            'icon': 'music'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-77.031706, 38.914581]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>A Little Night Music</strong><p>The Arlington Players\' production of Stephen Sondheim\'s  <a href="http://www.thearlingtonplayers.org/drupal-6.20/node/4661/show" target="_blank" title="Opens in a new window"><em>A Little Night Music</em></a> comes to the Kogod Cradle at The Mead Center for American Theater (1101 6th Street SW) this weekend and next. 8:00 p.m.</p>',
+                            'icon': 'music'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-77.020945, 38.878241]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Truckeroo</strong><p><a href="http://www.truckeroodc.com/www/" target="_blank">Truckeroo</a> brings dozens of food trucks, live music, and games to half and M Street SE (across from Navy Yard Metro Station) today from 11:00 a.m. to 11:00 p.m.</p>',
+                            'icon': 'music'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-77.007481, 38.876516]
+                        }
+                    }
+                ]
+            }
+        });
+        // Add a layer showing the places.
+     map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': ['get', 'icon'],
+                'icon-allow-overlap': true
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+    map.on('click', 'places', (e) => {
+            // Copy coordinates array.
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'places', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'places', () => {
+            map.getCanvas().style.cursor = '';
+        });
+    
+
+
+
+    
+    map.addSource('route', {
+        'type': 'geojson',
+        'data': {
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+                'type': 'LineString',
+                'coordinates': [
+                    [103.7678216, 1.3577542],
+                    [103.7692977, 1.355755],
+                    [103.7707782,1.3519902],
+                    [103.7712074, 1.3511536], 
+                    [103.7721515, 1.3498129], 
+                    [103.7755633, 1.3453938], 
+                    [103.7797455, 1.3401088], 
+                    [103.7804858, 1.3390898], 
+                    [103.7808828, 1.3384463], 
+                    [103.7810544, 1.3377598], 
+                    [103.7811081, 1.33658], 
+                    [103.7812851, 1.3330941], 
+                    [103.7816208, 1.3248697], 
+                    [103.7816592, 1.3242976], 
+                    [103.7817719, 1.3236701], 
+                    [103.7819811, 1.3230963], 
+                    [103.7822761, 1.3226136], 
+                    [103.7827589, 1.3220559], 
+                    [103.7833268, 1.3214612], 
+                    [103.7836594, 1.3210214], 
+                    [103.7838311, 1.3207103], 
+                    [103.7841476, 1.3200078], 
+                    [103.7843943, 1.3192087], 
+                    [103.7845382, 1.3186813], 
+                    [103.7849567, 1.3179144], 
+                    [103.7865318, 1.3157719], 
+                    [103.7872506, 1.3148388], 
+                    [103.7877227, 1.314399], 
+                    [103.7893534, 1.3132728], 
+                    [103.7896407, 1.3129858], 
+                    [103.7900484, 1.3124925], 
+                    [103.7903703, 1.3119347], 
+                    [103.7905634, 1.3114735], 
+                    [103.7915826, 1.3079339], 
+                    [103.7918723, 1.3068827], 
+                    [103.7919796, 1.3065931], 
+                    [103.7931383, 1.3044694], 
+                    [103.7946075, 1.3018134], 
+                    [103.7952405, 1.3006765], 
+                    [103.7953907, 1.3002796], 
+                    [103.7955302, 1.2998291], 
+                    [103.7958891, 1.2986054], 
+                    [103.7961683, 1.2977699], 
+                    [103.7965117, 1.2972765], 
+                    [103.7970696, 1.2942732], 
+                    [103.798872, 1.2936511], 
+                    [103.7989578, 1.292557], 
+                    [103.7990437, 1.2896181], 
+                    [103.7990797, 1.2880432], 
+                    [103.7991226, 1.2868526], 
+                    [103.7992513, 1.2862519], 
+                    [103.7994659, 1.28578], 
+                    [103.7997663, 1.2852866], 
+                    [103.8001203, 1.2850292], 
+                    [103.8006353, 1.2847074], 
+                    [103.801161, 1.284525], 
+                    [103.8029635, 1.2843212], 
+                    [103.8084567, 1.2840102], 
+                    [103.8115271, 1.2838281], 
+                    [103.8125786, 1.2836136], 
+                    [103.8137051, 1.2832382], 
+                    [103.8145849, 1.2827984], 
+                    [103.8156041, 1.2821656], 
+                    [103.8169345, 1.2813289], 
+                    [103.8178451, 1.2807788], 
+                    [103.8191862, 1.2799529], 
+                    [103.8194598, 1.2797705], 
+                    [103.8197871, 1.2796204], 
+                    [103.8202484, 1.2794648], 
+                    [103.8207151, 1.2793897], 
+                    [103.8212194, 1.2794326], 
+                    [103.8219167, 1.2795238], 
+                    [103.8226087, 1.279615], 
+                    [103.8233544, 1.2795667], 
+                    [103.8240464, 1.2793951], 
+                    [103.8246365, 1.2791162], 
+                    [103.8251707, 1.2787513], 
+                    [103.8256213, 1.278333], 
+                    [103.8274291, 1.2768635], 
+                    [103.8302245, 1.2746072], 
+                    [103.832102, 1.2731645],
+         ]
+            }
+        }
+    });
+    map.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': 'route',
+        'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#c3272e',
+            'line-width': 5
+        }
+    });
+});
+
+</script>
+
+
+</html>
